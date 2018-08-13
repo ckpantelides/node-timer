@@ -1,7 +1,7 @@
 body {
   font-family: times new roman;
   background-color: #ffffba;
-  /* ##fdfd96; */
+  /* #fdfd96; */
 }
 
 h1 {
@@ -42,7 +42,7 @@ button {
   font-size: 14px;
   margin-top: 10px;
   margin-left: 3px;
-  background-color: #fdfd96;
+  background-color: #ffffba;
   border-style: solid;
   border-color: black;
   border-width: thin;
@@ -78,7 +78,7 @@ input#taskname {
   margin-right: auto;
   text-align: center;
   border-bottom: black;
-  background-color: #fdfd96;
+  background-color: #ffffba;
   border-bottom-style: solid;
   border-bottom-width: thin;
   font-family: Times;
