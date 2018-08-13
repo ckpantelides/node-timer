@@ -1,0 +1,95 @@
+body {
+  font-family: times new roman;
+  background-color: #fdfd96;
+  /* #ffffba; */
+}
+
+h1 {
+  font-family: 'Abril Fatface', cursive;'Josefin Sans', sans-serif;
+  text-align: center;
+  font-size: 50px;
+  color: #06051d;
+  font-weight:normal;
+  padding-top: 130px;
+  margin: 0;
+}
+
+img {
+  height: 18px;
+  margin-bottom: -0.25em;
+  margin-left: 7px;
+}
+
+h2 {
+  font-size: 90px;
+  color: #06051d;
+  font-weight: normal;
+  text-align: center;
+  margin: 0;
+  cursor: crosshair;
+}
+
+.clock {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+button {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-left: 3px;
+  background-color: #fdfd96;
+  border-style: solid;
+  border-color: black;
+  border-width: thin;
+  font-family: Times;
+}
+
+p, time, clock {
+  display: block;
+  text-align: center;
+  font-size: 14px;
+  color: #06051d;
+  width: 100%;
+  font-weight:normal;
+}
+
+div.container {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  width: 50%;
+}
+
+div.stopwatch {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+input#taskname {
+  display: block;
+  margin-top: 0;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border-bottom: black;
+  background-color: #fdfd96;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  font-family: Times;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  -webkit-appearance: none;
+}
+
+@media only screen and (max-width: 600px) {
+  h1 {
+    padding-top: 80px;
+  }
+}
