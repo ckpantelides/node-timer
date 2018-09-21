@@ -11,6 +11,8 @@
   "dependencies": {
     "ejs": "^2.6.1",
     "express": "^4.16.3",
-    "request": "^2.87.0"
+    "lodash.groupby": "^4.6.0",
+    "request": "^2.87.0",
+    "sqlite3": "^4.0.2"
   }
 }

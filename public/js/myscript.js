@@ -10,8 +10,20 @@ var i = 0;
 
 $("#plus").click(function() {
 
-      // takes taskname from html
-      var taskname = document.getElementById('taskname').value;
+    // takes taskname from html
+    var text, taskname = document.getElementById('taskname').value;
+
+    // require a taskname to be entered
+    if (taskname == "") {
+        document.getElementById("alert").style.display = "block";
+        text = "What's the task name?";
+        document.getElementById("alert").innerHTML = text;
+    }
+
+    // create new timer if taskname valid
+    else {
+      // hides any taskname alert
+      document.getElementById("alert").style.display = "none";
 
       // creates list item and appends task to item
       var entry = document.createElement('p');
@@ -24,12 +36,12 @@ $("#plus").click(function() {
 
       // increases id count
       i++;
-      
+
       // creates stopwatch timer and appends to taskname
       var watch = document.createElement('div');
       watch.className = "clock " + i;
       var time = document.createElement('time');
-      time.id = "timer";
+      time.id = "timer" + i;
       var zeroCount = document.createTextNode("00:00:00");
       time.appendChild(zeroCount);
       watch.appendChild(time);
@@ -55,6 +67,12 @@ $("#plus").click(function() {
       watch.appendChild(clear);
       watch.appendChild(trash);
 
+      // show save button once first timer created
+      let saveButton = document.getElementById("save");
+      if (i > 0) {
+      saveButton.style.display = "block";
+      }
+    }
   });
 
 // starting the timer
@@ -75,6 +93,7 @@ $(document).on("click", "#start", function(){
 
     // function to add seconds, turn seconds to minutes, then minutes to hours
     function add() {
+
     seconds++;
       if (seconds >= 60) {
         seconds = 0;
@@ -110,9 +129,11 @@ $(document).on("click", "#stop", function(){
     // get the integer from the clock's className, to match the corresponding start
     // intance
     let j = this.parentNode.className.split(" ")[1];
+
     /*
     clearInterval(window["begin" + j]);
     */
+
     // stops the corresponding timer
     clearInterval(MyLib["begin" + j]);
 
@@ -134,6 +155,55 @@ $(document).on("click", "#delete", function(){
 
   // deletes parent node (i.e. entire div)
   this.parentNode.remove();
+  });
+
+  // saving timers
+  $("#save").click(function() {
+    // get current date
+    var d = new Date();
+    var days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+    let fullDate = days[d.getDay()] + " " + d.getDate() + " " + months[d.getMonth()];
+
+    /*
+    // date in ISO format
+    let ISO = d.toISOString();
+    // remove time from date
+    let newISO = ISO.split("T")[0];
+    */
+
+    // creates array to hold data from each timer
+    var timerLog = [];
+
+    // loop through each timer, collecting task name and time spent
+    let k;
+    for (k = 1; k <= i; k++) {
+      let timer = document.getElementById("timer" + k);
+
+      // ignores any timer that may have been deleted
+      if (timer != null) {
+        let clock = timer.innerHTML;
+        let parentName = timer.parentNode.previousSibling.innerHTML;
+        timerLog.push({parentName,clock,fullDate});
+      //  timerLog.push({parentName,clock,newISO});
+
+      }
+    }
+
+    // stringify array so it's ready to be sent to the server
+    var timerJSON = JSON.stringify(timerLog);
+
+    // create new AJAX oject
+    var xhttp = new XMLHttpRequest();
+
+    // send data via AJAX to server's "save" route
+    xhttp.open("POST", "/save", true);
+    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.setRequestHeader("Content-type", "application/json");
+
+    xhttp.send(timerJSON);
+
   });
 
 });

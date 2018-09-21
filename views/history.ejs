@@ -9,22 +9,25 @@
     <link href="https://fonts.googleapis.com/css?family=Abril+Fatface" rel="stylesheet"/>
     <script src="/js/myscript.js"></script>
 
-    <title>Task Timer</title>
+    <title>Task History</title>
   </head>
 
   <body>
 
-    <h1>Task Timer.</h1>
-    <div id="container">
-      <p id="alert"></p>
-      <h2 id="plus">+</h2>
-      <input type="text" id="taskname" placeholder="task name">
-      <div id="tasklist"></div>
-      <br>
-      <button id="save" style="display:none">save</button>
-      <br>
-      <button style="font-style:italic" onclick="location.href='/history'" id="history">history</button>
-    </div>
+    <h1>Task History.</h1>
+
+    <% for (var key in grouped) { %>
+    <p style="font-style:italic"><%- key %></p>
+    <table>
+      <% for (var value of grouped[key]) { %>
+      <tr>
+        <td><%- value.date %></td><td>&nbsp &nbsp &nbsp &nbsp</td>
+        <td><%- value.time %></td>
+      </tr>
+      <% } %>
+    </table>
+      <p style="text-decoration:underline">total: <%- grouped[key].total %></p>
+    <% } %>
 
   </body>
 </html>
