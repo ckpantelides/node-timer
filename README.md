@@ -10,7 +10,7 @@ It lets you name multiple timers - which can run concurrently - so you can track
 ![img1] ![img2]
 
 [img1]: https://github.com/ckpantelides/node-timer/blob/images/timer-crop1.jpg
-[img2]: https://github.com/ckpantelides/node-timer/blob/images/timer-crop2.jpg
+[img2]: https://github.com/ckpantelides/node-timer/blob/images/timer-crop3.jpg
 
 #### Installation
 
